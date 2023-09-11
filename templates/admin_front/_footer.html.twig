@@ -1,0 +1,35 @@
+<footer
+	class="bg-white text-dark p-2 footer footer-bottom">
+	{# On inclut le logo et la deuxième partie de la navbar #}
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+		<div class="container-fluid">
+			<img src="{{ asset('images/vrxlogo.webp') }}" alt="logo" height="95px" width="300px;"/>
+			<a class="navbar-brand" href="{{ path('app_home2') }}"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav w-100">
+					<li class="nav-item  ms-auto">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_home2') }}">Contact</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Portal Client</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Note Legal - Confidentialité - Ethiques</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div
+		class="container-fluid">
+		{# On inclut le registre juridique #}
+		<p>VEREX, Limitada, société limitée par les garanties des droits angolais.</p>
+		{# On inclut le copyright et la date #}
+		&copy;
+		{{ ""|date('Y') }}
+		-  "VEREX. All rights reserved"
+	</div>
+</footer>

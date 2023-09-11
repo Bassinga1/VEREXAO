@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    {# On rend l'integralité du formulaire en suivant le patron (carouseltype) #}
+    {# {{ form_widget(form) }} #}
+    {# On rend les lignes de chaque propriétés #}
+    <div class="d-flex flex-wrap justify-content-between mb-2">
+        <div class="col-12 col-md-2 d-flex align-items-center mb-3">{{ form_row(form.isActive) }}</div>
+        <div class="col-12 col-md-8">{{ form_row(form.titre) }}</div>
+    </div>
+
+    {{ form_row(form.imageName) }}
+    {{ form_row(form.texte) }}
+    
+    {{ form_row(form.updatedAt) }}
+    {{ form_row(form.imageFile) }}
+    {{ form_row(form.signature) }}
+    
+    <button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

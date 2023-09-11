@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Le CDN de fa #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {# La feuille de style de Bootstrap version=5.2 #}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        {# La feuille de style du style minifié de lightbox #}
+        <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
+        {# La feuille de style du style front minifié de public/scss/style-front.scss #}
+        <link rel="stylesheet" href="{{ asset('css/style-front.min.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    
+    <body>
+        {% include 'admin_front/_top-nav.html.twig' %}
+        <main class="container-xl py-4 shadow bg-white">
+        {% block body %}{% endblock %}
+        </main>
+        {% include 'admin_front/_footer.html.twig' %}
+        {# Le CDN du jquery #}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        {# Le CDN javascript Bootstrap 5.2 #}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        {# Le js de lightbox #}
+        <script src="{{ asset('js/lightbox.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
