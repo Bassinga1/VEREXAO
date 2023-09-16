@@ -9,6 +9,16 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class HomeFixtures extends Fixture
 {
+    // ====================================================== //
+    // ===================== PROPRIETES ===================== //
+    // ====================================================== //
+    public const HOME1 = "home1";
+    // public const HOME2 = "home2";
+
+    // ====================================================== //
+    // ===================== METHODES ===================== //
+    // ====================================================== //
+
     public function load(ObjectManager $manager): void
     {
         $home = new Home();
@@ -19,6 +29,9 @@ class HomeFixtures extends Fixture
         $home->setUpdatedAt(new DateTime());
         $home->setImageName("bghome.webp");
         $manager->persist($home);
+        $manager->flush();
+        // référence pour la home "home1" associée à la constante HOME1
+        $this->addReference(self::HOME1, $home);
 
         $home = new Home();
         $home->setTitre('Bienvenue et merci de votre visite !');
@@ -27,8 +40,9 @@ class HomeFixtures extends Fixture
         $home->setIsActive(false);
         $home->setUpdatedAt(new DateTime());
         $home->setImageName("bgvrx1.webp");
-        $manager->persist($home);;
-
+        $manager->persist($home);
         $manager->flush();
+        // // référence pour la home "home2" associée à la constante HOME2
+        // $this->addReference(self::HOME2, $home);
     }
 }

@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+    
+    {# On rend l'integralité du formulaire en suivant le patron (carouseltype) #}
+    {# {{ form_widget(form) }} #}
+    {# On rend les lignes de chaque propriétés #}
+    <div class="d-flex flex-wrap justify-content-between mb-2">
+        <div class="col-12 col-md-2 d-flex align-items-center mt-2 mb-2">{{ form_row(form.isActive) }}</div>
+        <div class="col-12 col-md-3">{{ form_row(form.rankOrder) }}</div>
+        <div class="col-12 col-md-7 text-end">{{ form_row(form.slug) }}</div>
+    </div>
+    {{ form_row(form.imageName) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.term) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.updatedAt) }}
+    {{ form_row(form.imageFile) }}
+    
+    <button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

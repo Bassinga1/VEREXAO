@@ -1,0 +1,61 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Service</h1>
+        <a href="{{ path('app_admin_service_index') }}" class="btn btn-dark btn-sm mb-2">Retour à la liste</a>
+    </div>
+
+    <table class="table table-index table-striped table-response">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ service.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ service.slug }}</td>
+            </tr>
+            <tr>
+                <th>Term</th>
+                <td>{{ service.term }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ service.price }}</td>
+            </tr>
+            <tr>
+                <th>Availability</th>
+                <td>{{ service.availability ? service.availability|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ service.imageName }}</td>
+            </tr>
+            <tr>
+                <th>RankOrder</th>
+                <td>{{ service.rankOrder }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ service.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ service.updatedAt ? service.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex m-3">
+        <a href="{{ path('app_admin_service_edit', {'id': service.id}) }}" class="btn btn-warning btn-right"><i class="align-middle" data-feather="edit-2"></i></a>
+        {{ include('admin_service/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}

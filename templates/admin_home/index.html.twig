@@ -11,10 +11,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Active</th>
                 <th>Image</th>
                 <th>Titre</th>
                 {# <th>Texte</th> #}
+                <th>Active</th>
                 <th>Signature</th>
                 <th>Mise à jour</th>
                 <th>Actions</th>
@@ -24,10 +24,14 @@
         {% for home in homes %}
             <tr>
                 <td>{{ home.id }}</td>
-                <td>{{ home.isActive ? 'Yes' : 'No' }}</td>
-                <td>{{ home.imageName }}</td>
+                <td>
+                    <a href="{{ asset('images/image/' ~ home.imageName) }}" data-lightbox="{{ home.imageName }}" {% if home.imageName is not null %} data-title="{{ home.imageName }}" {% endif %}>
+                        <img src="{{ asset('images/image/' ~ home.imageName) }}" alt="" class="img-list">
+                    </a>
+                </td>
                 <td>{{ home.titre }}</td>
                 {# <td>{{ home.texte }}</td> #}
+                <td>{{ home.isActive ? 'Yes' : 'No' }}</td>
                 <td>{{ home.signature }}</td>
                 <td>{{ home.updatedAt ? home.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
                 <td>

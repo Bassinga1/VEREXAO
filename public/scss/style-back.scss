@@ -25,7 +25,16 @@ body {
             }
         }
     }
+    .bg-form-image{
+        background: #a9bab4;
+        .bt-trash{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
 }
+
 
 
 

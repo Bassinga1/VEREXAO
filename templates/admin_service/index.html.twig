@@ -1,0 +1,58 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Service</h1>
+        <a href="{{ path('app_admin_service_new') }}" class="btn btn-success">Nouveau</a>
+    </div>
+
+    <table class="table table-index table-striped table-response">
+        <thead>
+            <tr>
+                <th>Id</th>
+                {# <th>Ordre</th> #}
+                <th>Image</th>
+                <th>Nom</th>
+                {# <th>Slug</th> #}
+                <th>Actif</th>
+                {# <th>Term</th> #}
+                {# <th>Disponibilité</th> #}
+                {# <th>Prix</th> #}
+                <th>Mise à jour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                {# <td>{{ service.rankOrder }}</td> #}
+                <td>
+                    <a href="{{ asset('images/image/' ~ service.imageName) }}" data-lightbox="{{ service.imageName }}" {% if service.imageName is not null %} data-title="{{ service.imageName }}" {% endif %}>
+                        <img src="{{ asset('images/image/' ~ service.imageName) }}" alt="" class="img-list">
+                    </a>
+                </td>
+                <td>{{ service.name }}</td>
+                {# <td>{{ service.slug }}</td> #}
+                <td>{{ service.isActive ? 'Yes' : 'No' }}</td>
+                {# <td>{{ service.term }}</td> #}
+                {# <td>{{ service.availability ? service.availability|date('d-m-Y H:i:s') : '' }}</td> #}
+                {# <td>{{ service.price }}</td> #}
+                <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    {% include 'admin_service/_delete_form.html.twig' %}
+                    <a href="{{ path('app_admin_service_show', {'id': service.id}) }}" class="btn btn-dark"><i class="align-middle" data-feather="eye"></i></a>
+                    <a href="{{ path('app_admin_service_edit', {'id': service.id}) }}" class="btn btn-warning"><i class="align-middle" data-feather="edit-2"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10"><div class="text-start">Aucune entrée trouvée dans la BDD!</div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

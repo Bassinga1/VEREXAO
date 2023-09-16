@@ -1,0 +1,18 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Nouveau Type{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Nouveau Type</h1>
+        <a href="{{ path('app_admin_type_index') }}" class="btn btn-dark btn-sm mb-2">Retour à la liste</a>
+    </div>
+
+    {{ include('admin_type/_form.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/image-upload.js') }}"></script>
+<script src="{{ asset('js/add-item-link.js') }}"></script>
+{% endblock %}

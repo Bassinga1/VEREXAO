@@ -1,0 +1,54 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Type{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+    <h1>Type</h1>
+    <a href="{{ path('app_admin_type_new') }}" class="btn btn-success">Nouveau</a>
+    </div>
+
+    <table class="table table-index table-striped table-response">
+        <thead>
+            <tr>
+                <th>Id</th>
+                {# <th>Ordre</th> #}
+                <th>Image</th>
+                <th>Nom</th>
+                {# <th>Slug</th> #}
+                <th>Actif</th>
+                {# <th>Term</th> #}
+                <th>Mise à jour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type in types %}
+            <tr>
+                <td>{{ type.id }}</td>
+                {# <td>{{ type.rankOrder }}</td> #}
+                <td>
+                    <a href="{{ asset('images/image/' ~ type.imageName) }}" data-lightbox="{{ type.imageName }}" {% if type.imageName is not null %} data-title="{{ type.imageName }}" {% endif %}>
+                        <img src="{{ asset('images/image/' ~ type.imageName) }}" alt="" class="img-list">
+                    </a>
+                </td>
+                <td>{{ type.name }}</td>
+                {# <td>{{ type.slug }}</td> #}
+                <td>{{ type.isActive ? 'Yes' : 'No' }}</td>
+                {# <td>{{ type.term }}</td> #}
+                <td>{{ type.updatedAt ? type.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>
+                    {% include 'admin_type/_delete_form.html.twig' %}
+                    <a href="{{ path('app_admin_type_show', {'id': type.id}) }}" class="btn btn-dark"><i class="align-middle" data-feather="eye"></i></a>
+                    <a href="{{ path('app_admin_type_edit', {'id': type.id}) }}" class="btn btn-warning"><i class="align-middle" data-feather="edit-2"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8"><div class="text-start">Aucune entrée trouvée dans la BDD!</div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

@@ -44,6 +44,17 @@ class Image
     #[ORM\JoinColumn(nullable: false)]
     private ?Carousel $carousel = null;
 
+    #[ORM\ManyToOne(inversedBy: 'images')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
+
+    // ====================================================== //
+    // =================== MAGIC FUNCTION ================== //
+    // ====================================================== //
+    public function __toString(): string
+    {
+        return (is_null($this->imageName)) ? "null" :$this->imageName;
+    }
     // ====================================================== //
     // =================== GETTERS/SETTERS ================== //
     // ====================================================== //
@@ -148,4 +159,17 @@ class Image
 
         return $this;
     }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+    
 }

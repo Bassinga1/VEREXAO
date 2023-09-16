@@ -35,6 +35,34 @@
 					</span>
 				</a>
 			</li>
+
+			<li class="sidebar-item {{ typeActive }}">
+				<a class="sidebar-link" href="{{ path('app_admin_type_index') }}">
+					<i class="align-middle" data-feather="slack"></i>
+					<span class="align-middle">
+						Type
+					</span>
+				</a>
+			</li>
+
+			<li class="sidebar-item {{ serviceActive }}">
+				<a class="sidebar-link" href="{{ path('app_admin_service_index') }}">
+					<i class="align-middle" data-feather="settings"></i>
+					<span class="align-middle">
+						Service
+					</span>
+				</a>
+			</li>
+
+			<li class="sidebar-item {{ imageActive }}">
+				<a class="sidebar-link" href="{{ path('app_admin_image_index') }}">
+					<i class="align-middle" data-feather="image"></i>
+					<span class="align-middle">
+						Image
+					</span>
+				</a>
+			</li>
+
 		</ul>
 	</div>
 </nav>

@@ -11,9 +11,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Actif</th>
                 <th>Ordre</th>
                 <th>Image</th>
+                <th>Actif</th>
                 <th>Tag</th>
                 {# <th>Texte</th> #}
                 <th>Mise à jour</th>
@@ -24,7 +24,6 @@
         {% for carousel in carousels %}
             <tr>
                 <td>{{ carousel.id }}</td>
-                <td>{{ carousel.isActive ? 'Yes' : 'No' }}</td>
                 <td>{{ carousel.rankOrder }}</td>
                 {# afficher les images du carousel et appliquer le lightbox #}
                 <td>
@@ -32,6 +31,7 @@
                         <img src="{{ asset('images/image/' ~ carousel.imageName) }}" alt="" class="img-list">
                     </a>
                 </td>
+                <td>{{ carousel.isActive ? 'Yes' : 'No' }}</td>
                 <td>{{ carousel.tag }}</td>
                 {# <td>{{ carousel.texte }}</td> #}
                 <td>{{ carousel.updatedAt ? carousel.updatedAt|date('d-m-Y H:i:s') : '' }}</td>

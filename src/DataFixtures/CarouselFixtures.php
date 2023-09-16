@@ -9,6 +9,16 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class CarouselFixtures extends Fixture
 {
+    // ====================================================== //
+    // ===================== PROPRIETES ===================== //
+    // ====================================================== //
+    public const CAROUSEL = "carousel";
+    public const CAROUSEL1 = "carousel1";
+    public const CAROUSEL2 = "carousel2";
+
+    // ====================================================== //
+    // ===================== METHODES ===================== //
+    // ====================================================== //
     public function load(ObjectManager $manager): void
     {
         $carousel = new Carousel();
@@ -19,6 +29,9 @@ class CarouselFixtures extends Fixture
         $carousel->setUpdatedAt(new DateTime());
         $carousel->setTag("home");
         $manager->persist($carousel);
+        $manager->flush();
+        // référence pour le carousel "carousel" associée à la constante CAROUSEL
+        $this->addReference(self::CAROUSEL, $carousel);
 
         $carousel = new Carousel();
         $carousel->setIsActive(true);
@@ -28,6 +41,9 @@ class CarouselFixtures extends Fixture
         $carousel->setUpdatedAt(new DateTime());
         $carousel->setTag("home");
         $manager->persist($carousel);
+        $manager->flush();
+        // référence pour le carousel "carousel" associée à la constante CAROUSEL
+        $this->addReference(self::CAROUSEL1, $carousel);
 
         $carousel = new Carousel();
         $carousel->setIsActive(true);
@@ -37,7 +53,9 @@ class CarouselFixtures extends Fixture
         $carousel->setUpdatedAt(new DateTime());
         $carousel->setTag("home");
         $manager->persist($carousel);
-
         $manager->flush();
+        // référence pour le carousel "carousel" associée à la constante CAROUSEL
+        $this->addReference(self::CAROUSEL2, $carousel);
+
     }
 }

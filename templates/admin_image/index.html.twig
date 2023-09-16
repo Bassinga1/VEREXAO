@@ -1,0 +1,48 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Image{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Image</h1>
+        <a href="{{ path('app_admin_image_new') }}" class="btn btn-success">Nouvelle</a>
+    </div>
+
+    <table class="table table-index table-striped table-response">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Ordre</th>
+                <th>Mise à jour</th>
+                <th>Tag</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.id }}</td>
+                <td>
+                    <a href="{{ asset('images/image/' ~ image.imageName) }}" data-lightbox="{{ image.imageName }}" {% if image.imageName is not null %} data-title="{{ image.imageName }}" {% endif %}>
+                        <img src="{{ asset('images/image/' ~ image.imageName) }}" alt="" class="img-list">
+                    </a>
+                </td>
+                <td>{{ image.rankOrder }}</td>
+                <td>{{ image.updatedAt ? image.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ image.tag }}</td>
+                <td>
+                    {% include 'admin_image/_delete_form.html.twig' %}
+                    <a href="{{ path('app_admin_image_show', {'id': image.id}) }}" class="btn btn-dark"><i class="align-middle" data-feather="eye"></i></a>
+                    <a href="{{ path('app_admin_image_edit', {'id': image.id}) }}" class="btn btn-warning"><i class="align-middle" data-feather="edit-2"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6"><div class="text-start">Aucune entrée trouvée dans la BDD!</div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base-frontend.html.twig' %}
+
+{% block title %}{{ type.name }}{% endblock %}
+
+{% block body %}
+<h1>{{ type.name }}</h1>
+<div class="row">
+    <div class="col-12 col-md-3">
+        {# On vérifie si le type a des images #}
+        {% if type.images|length > 0 %}
+            {# On affiche la première image #}
+            <a href="{{ asset('images/image/' ~ type.images[0].imageName ) }}" data-lightbox={{ type.name }}>
+                <img src="{{ asset('images/image/' ~ type.images[0].imageName ) }}" alt="{{ type.name }}" class="img-fluid" id="img-big">
+            </a>
+            {# On vérifie s'il y'a plus d'une image dans la collection #}
+            {% if type.images|length > 1 %}
+            <div class="row justify-content-between">
+                {% for image in type.images %}
+                    {% if loop.index0 > 0 %}
+                        <div class="img-30 mt-3 cursor-pointer">
+                            <img src="{{ asset('images/image/' ~ type.images[loop.index0].imageName ) }}" alt="" class="img-fluid">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="col-12 col-md-9">
+        <div>{{ type.term|raw }}</div>
+        {# <div>{{ type.price|format_currency('EUR') }}</div> #}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+// On récupère les objets de la classe cursor-pointer
+$('.cursor-pointer').on('click', function(e){
+    e.stopPropagation();
+    // On récupère la valeur de l'attribut src de l'image cliquée
+    let itemSource = $(this).find('img').attr('scr');
+    // On récupère la valeur de l'attribut src de la grande img
+    let currentSource = $('#img-big').attr('src');
+    // On remplace l'attribut src de la grande image par celui de celle cliquée et on remplace également l'attribut href de la balise a
+    $('#img-big').attr('src', itemSource);
+    $('#img-big').parent().attr("href", itemSource);
+    // On charge le src de l'image cliquée
+    $(this).find('img').attr('src', currentSource);
+});
+</script>
+{% endblock %}
