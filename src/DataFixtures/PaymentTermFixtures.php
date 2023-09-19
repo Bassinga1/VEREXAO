@@ -60,7 +60,6 @@ class PaymentTermFixtures extends Fixture implements DependentFixtureInterface
     {
         return[
             ServiceFixtures::class,
-            ProduitFixtures::class
         ];
     }
 }

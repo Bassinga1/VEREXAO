@@ -8,6 +8,7 @@ body{
             font-family: 'Montserrat', sans-serif;
         }
     }
+    
     .signature{
         font-weight: 300;
     }
@@ -17,6 +18,11 @@ body{
     .cursor-pointer{
         cursor: pointer;
     }
+    .avatar{
+        max-width: 100px;
+        max-height: 30px;
+        // border-radius: 50%;
+}   
 }
 
 

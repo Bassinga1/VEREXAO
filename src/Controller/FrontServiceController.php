@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\ServiceRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FrontServiceController extends AbstractController
 {
@@ -21,15 +22,21 @@ class FrontServiceController extends AbstractController
     }
     
     
-    #[Route('/service/{slug}', name: 'app_front_service')]
-    public function index($slug, ServiceRepository $serviceRepository): Response
+    #[Route('/service/{slug}', name: 'app_front_service', methods:['GET', 'POST'])]
+    public function index($slug, ServiceRepository $serviceRepository, Request $request): Response
     {
         if($slug=="services"){
             return $this->render('front_service/index.html.twig', [
                 'services' => $serviceRepository->findOneBy(["isActive"=>true], ["name"=>"ASC"])
             ]);
         }else{
-            $service = $serviceRepository->findOneBy(["slug"=>$slug]);
+            if(!is_null($request->request->get('search'))){
+                // dd($request->request->get('search'));
+                $service = $serviceRepository->findBySearch($slug, $request->request->get('search'));
+                // $service = $ser[0];
+            }else{
+                $service = $serviceRepository->findOneBy(["slug"=>$slug]);
+            }
             return $this->render('front_service/show.html.twig', [
                 'service' => $service,
             ]);

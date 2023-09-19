@@ -21,20 +21,23 @@ class ServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Service::class);
     }
 
-//    /**
-//     * @return Service[] Returns an array of Service objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+        * @return Service[] Returns an array of Service objects
+        */
+    public function findBySearch($slug, $value): ?Service
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s', 't')
+            ->leftJoin('s.types', 't')
+            ->andWhere('s.slug = :val')
+            ->andWhere('t.name LIKE :val2')
+            ->setParameter('val', $slug)
+            ->setParameter('val2', '%' . $value . '%')
+            ->orderBy('t.name', 'ASC')
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Service
 //    {

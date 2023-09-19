@@ -89,7 +89,6 @@ class ImageFixtures extends Fixture implements DependentFixtureInterface
     {
         return[
             TypeFixtures::class,
-            MarqueFixtures::class,
         ];
     }
 }

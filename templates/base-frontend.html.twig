@@ -12,12 +12,27 @@
         <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
         {# La feuille de style du style front minifié de public/scss/style-front.scss #}
         <link rel="stylesheet" href="{{ asset('css/style-front.min.css') }}">
+        {# Le font-family Montserrat #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,500&family=Poppins:ital,wght@0,100;0,500;0,600;1,200&display=swap" rel="stylesheet">
+        {# Le cdn de https://cdnjs.com/libraries/font-awesome/6.4.0 #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% block stylesheets %}{% endblock %}
     </head>
     
     <body>
         {% include 'admin_front/_top-nav.html.twig' %}
         <main class="container-xl py-4 shadow bg-white">
+        {# On met une alert Boostrap si necessaire #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% block body %}{% endblock %}
         </main>
         {% include 'admin_front/_footer.html.twig' %}
@@ -27,6 +42,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         {# Le js de lightbox #}
         <script src="{{ asset('js/lightbox.min.js') }}"></script>
+        <script src="{{ asset('js/favoris.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

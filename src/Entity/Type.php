@@ -54,6 +54,9 @@ class Type
     #[ORM\Column]
     private ?int $rankOrder = null;
 
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Favori::class, orphanRemoval: true)]
+    private Collection $favoris;
+
     // ====================================================== //
     // =================== CONSTRUCTORS ================== //
     // ====================================================== //
@@ -68,6 +71,7 @@ class Type
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     // ====================================================== //
@@ -225,6 +229,36 @@ class Type
     public function setRankOrder(int $rankOrder): static
     {
         $this->rankOrder = $rankOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favori>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favori $favori): static
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+            $favori->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favori $favori): static
+    {
+        if ($this->favoris->removeElement($favori)) {
+            // set the owning side to null (unless already changed)
+            if ($favori->getType() === $this) {
+                $favori->setType(null);
+            }
+        }
 
         return $this;
     }

@@ -1,12 +1,17 @@
 {% extends "base-frontend.html.twig" %}
 
-{% block title %}
-	{{ service.name }}
-{% endblock %}
+{% block title %}{{ service.name }}{% endblock %}
 
 {% block body %}
 
+	<div class="d-flex flex-wrap justify-content-between align-items-center">
 	<h1>{{ service.name }}</h1>
+	<form method="post" class="d-flex">
+			<input type="search" name="search" class="form-control" required>
+			<button type="submit" class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
+		</form>
+	</div>
+
 	<div class="row">
 		{% if service.imageName is not null %}
 			{% set image = service.imageName %}
@@ -21,12 +26,13 @@
 			{% if service.term is not null %}
 				{{ service.term|raw }}
 			{% else %}
-				<p>Il n'ya pas de encore de term pour ce service</p>
+				<p>Il n'ya pas encore de term pour ce service</p>
 			{% endif %}
 		</div>
 	</div>
-	<h2>systemes gestion ISO 9001
-	</h2>
+	
+	<h2 class="mt-5">{{ service.name }}</h2>
+
 	<div class="row">
 		{% for type in service.types %}
         <div class="col-12 col-md-3 col-lg-2 d-flex align-items-stretch">
@@ -40,7 +46,18 @@
 				<div class="card-body d-flex flex-wrap">
 					<h5 class="card-title">{{ type.name }}</h5>
 					<p class="card-text w-100">{{ type.term }}</p>
-					<a href="{{ path('app_front_type', {slug: type.slug}) }}" class="btn btn-dark align-self-end">Voir</a>
+					<div class="d-flex flex-wrap justify-content-between w-100">
+						<a href="{{ path('app_front_type', {slug: type.slug}) }}" class="btn btn-dark align-self-end">Voir</a>
+						{% if app.user is not null %}
+							{% set isFavori = false %}
+							{% for favori in app.user.favoris %}
+								{% if favori.type == type %}
+								{% set isFavori = true %}
+								{% endif %}
+							{% endfor %}
+						<button class="btn btn-dark add-favori" data-type-id="{{ type.id }}"><i class="{% if isFavori == true %}fa-solid{% else %}fa-regular{% endif %} fa-heart"></i></button>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
