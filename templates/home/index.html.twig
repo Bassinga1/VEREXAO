@@ -4,46 +4,58 @@
 {% endblock %}
 
 {% block body %}
-	<div class="d-flex flex-wrap">
-	<div class="col-12 col-md-6">
-		
-	</div>
-	<div class="col-12 col-md-6">
-	
-	</div>
+	<div class="">
+		<h4>Avec VEREXAO - c'est ajouter de la valeur aujourd’hui aux entreprises pour remodeler leur demain!</h4>
 	</div>
 
-	<h1>{{ home.titre }}</h1>
-	{# On vérifie si on a des carousels #}
-	{% if carousels|length > 0 %}
-		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-			<div
-				class="carousel-indicators">
-				{# On fait une loop sur le tableau des carousels pour faire les indicators #}
-				{% for carousel in carousels %}
-					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ loop.index }}"></button>
-				{% endfor %}
-			</div>
-			<div class="carousel-inner">
-				{% for carousel in carousels %}
-					<div class="carousel-item {% if loop.index0 == 0 %} active {% endif %}">
-						<img src="{{ asset('images/image/' ~ carousel.imageName ) }}" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h5>First slide label</h5>
-							<p>Some representative placeholder content for the first slide.</p>
-						</div>
-					</div>
-				{% endfor %}
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+	<video class="video-js w-100" src="{{ asset('video/vid1.mp4') }}" autoplay="true" class="video-js vjs-controls vjs-workinghover vjs-v7 bc-player-By4LoE6k7_default bc-player-By4LoE6k7_default-index-0 vjs-mouse vjs-plugins-ready vjs-player-info vjs-contextmenu vjs-contextmenu-ui vjs-errors vjs-has-started vjs-user-inactive vjs-playing vjs-layout-medium " data-video-id="6336789117112" data-account="1066292269001" data-player="By4LoE6k7" data-embed="default" data-application-id="" data-teaser-enabled="" data-teaser-duration="91" data-start-time="0" class="vjs-tech" loop="" muted="muted" playsinline="playsinline" id="vjs_video_3_html5_api" tabindex="-1" preload="metadata"></video>
+	{# <hr> #}
+
+	<img src="image/sgiso9001.jpeg/" alt="">
+
+	<div class="d-flex flex-wrap bg-form-image">
+
+		<div class="col-12 col-md-6">
+			<h3>Stratégie, transactions et transformation:</h3>
+			<p class="text">VEREX peut vous aider à réaliser vos ambitions en proposant une approche radicalement différente pour relier stratégie, transactions, transformation et technologie, où la conception et la livraison s'éclairent mutuellement à chaque étape.</p> 
 		</div>
-	{% endif %}
+
+		<div class="col-12 col-md-6 border">
+			<h1>{{ home.titre }}</h1>
+			{# On vérifie si on a des carousels #}
+			{% if carousels|length > 0 %}
+				<div id="carouselExampleCaptions" class="carousel slide  border" data-bs-ride="false">
+					<div
+						class="carousel-indicators">
+						{# On fait une loop sur le tableau des carousels pour faire les indicators #}
+						{% for carousel in carousels %}
+							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ loop.index }}"></button>
+						{% endfor %}
+					</div>
+					<div class="carousel-inner">
+						{% for carousel in carousels %}
+							<div class="carousel-item {% if loop.index0 == 0 %} active {% endif %}">
+								<img src="{{ asset('images/image/' ~ carousel.imageName ) }}" class="d-block w-100" alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>First slide label</h5>
+									<p>Some representative placeholder content for the first slide.</p>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			{% endif %}
+		</div>
+
+	</div>
+
 
 {% endblock %}

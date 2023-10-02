@@ -27,7 +27,8 @@ class AdminServiceController extends AbstractController
     {
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service);
-        $form->handleRequest($request);
+        // On traite le formulaire (l'hydratation)
+        $form->handleRequest($request); // l'hydratation de l'objet $home avec les données se trouvant dans $request
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($service);

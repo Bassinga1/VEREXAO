@@ -2,7 +2,8 @@
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="{{ path('app_home2') }}">Home</a>
+		
+		<a class="navbar-brand" href="{{ path('app_home2') }}"><img src="{{ asset('images/vrxlogo.jpeg') }}" alt="logo" height="45px" width="45px;"/></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -15,13 +16,13 @@
 					{{ render(controller('App\\Controller\\FrontServiceController::renderServiceDropDown')) }}
 				</li>
 
-				{# <li class="nav-item">
-					<a class="nav-link" href="#">Secteurs</a>
-				</li> #}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_admin_secteurs') }}">Secteurs</a>
+				</li>
 
-				{# <li class="nav-item">
-					<a class="nav-link" href="#">A propos</a>
-				</li> #}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_admin_aboutus') }}">A propos</a>
+				</li>
 
 				<li class="nav-item  ms-lg-auto d-flex align-items-center">
 					{% if app.user is null %}
@@ -37,7 +38,7 @@
 				
 				{% if is_granted("ROLE_ADMIN") %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_admin') }}">Admin</a>
+					<a class="nav-link" href="{{ path('app_admin') }}"></a>
 				</li>
 				{% endif %}
 
