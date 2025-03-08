@@ -1,0 +1,109 @@
+{# On copie la nav de bootstrap 5.2 #}
+
+{# <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+	<div class="container-fluid">
+		
+		<a class="navbar-brand" href="{{ path('app_home2') }}"><img src="{{ asset('images/vrxlogo.jpeg') }}" alt="logo" height="45px" width="45px;"/></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav w-100">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Home</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_admin_aboutus') }}">About</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Services
+					</a>
+					{{ render(controller('App\\Controller\\FrontServiceController::renderServiceDropDown')) }}
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_admin_secteurs') }}">Projects</a>
+				</li>
+
+				
+
+				<li class="nav-item  ms-lg-auto d-flex align-items-center">
+					{% if app.user is null %}
+					<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+					{% else %}
+						<span class="text-light me-2">{{ app.user.email }}</span>
+						{% if app.user.avatar is not null and app.user.avatar.imageName is not null %}
+						<img src="{{ asset('images/avatar/' ~ app.user.avatar.imageName) }}" alt="avatar" class="avatar">
+						{% endif %}
+					<a class="nav-link" href="{{ path('app_front_user') }}"><i class="fa-solid fa-user"></i></a>
+					{% endif %}
+				</li>
+				
+				{% if is_granted("ROLE_ADMIN") %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_admin') }}"></a>
+				</li>
+				{% endif %}
+
+				<li class="nav-item">
+					{% if is_granted("ROLE_USER") %}
+					<a class="nav-link" href="{{ path('app_logout') }}"><i class="fa-sharp fa-solid fa-globe"></i></a>
+					{% else %}
+					<a class="nav-link" href="{{ path('app_login') }}"><i class="fa-solid fa-user"></i></a>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav> #}
+
+<!-- Header -->
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+		<a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+			<!-- Uncomment the line below if you also wish to use an image logo -->
+			<!-- <img src="assets/img/logo.png" alt=""> -->
+			<h1 class="sitename">
+				<img src="{{ asset('images/vrxLogo.jpeg') }}" alt="logo" height="90px" width="50px;"/>
+			</h1>
+			<span></span>
+		</a>
+
+		<nav id="navmenu" class="navmenu">
+			<ul>
+			<li><a href="#hero" class="active">Home<br></a></li>
+			<li><a href="#about">About</a></li>
+			<li><a href="#portfolio">Portfolio</a></li>
+			<li><a href="#team">Team</a></li>
+
+			<li class="dropdown"><a href="#"><span>Services</span> <i class="fa-solid fa-chevron-down"></i></a>
+				<ul>
+					<li><a href="#">Soluções Web</a></li>
+					<li class="dropdown"><a href="#"><span>Design de Sistema de Gestão "SG"</span> <i class="fa-solid fa-chevron-down"></i></a>
+						<ul>
+							<li><a href="#">SG baseado nas Normas ISO 9001</a></li>
+							<li><a href="#">SG baseado na Norma ISO 14001</a></li>
+							<li><a href="#">SG baseado na Norma ISO 45001</a></li>
+							<li><a href="#">SG baseado na Norma ISO 27001</a></li>
+							<li><a href="#">Outros</a></li>
+						</ul>
+					</li>
+						<li><a href="#">Consultoria de Gestão</a></li>
+						<li><a href="#">Designer & Grafismo</a></li>
+						<li><a href="#">Fotografia e Montagem de vídeos</a></li>
+					</ul>
+			</li>			
+			<li><a href="#contact">Contact</a></li>
+			</ul>
+			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		</nav>
+
+    <a class="btn-getstarted" href="#contact">Get a Quote</a>
+
+    </div>
+</header>
+<!-- /Header -->

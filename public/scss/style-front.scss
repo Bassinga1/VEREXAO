@@ -1,6 +1,5 @@
 @import '_variables.scss';
 body{
-    background: url('../images/image/bghome.webp');
     font-family: 'Poppins', sans-serif;
     color: $textColor;
     @for $i from 1 through 6 {
@@ -23,17 +22,33 @@ body{
         max-height: 30px;
         // border-radius: 50%;
     }
-    .footer{
-        bottom: end;
+    #footer{
+        bottom: 0px;
     }
-    .border{
-        border-radius: 15px;
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        -ms-border-radius: 15px;
-        -o-border-radius: 15px;
-    }
+    // .border{
+    //     border-radius: 15px;
+    //     -webkit-border-radius: 15px;
+    //     -moz-border-radius: 15px;
+    //     -ms-border-radius: 15px;
+    //     -o-border-radius: 15px;
+    // }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
